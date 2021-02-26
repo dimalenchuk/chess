@@ -1,15 +1,20 @@
 version: '3'
 
 services:
-  chess-app:
-    image: chess-app:01
+  chess:
+    image: chess:01
     ports:
-      - "8080:8080"
       - "8081:8081"
     links:
       - mongodb
+    networks:
+      - chessnetwork
+  chesscl:
+    image: chesscl:01
+    ports:
+      - "8080:8080"
     depends_on:
-      - mongodb
+      - chess
     networks:
       - chessnetwork
   mongodb:
